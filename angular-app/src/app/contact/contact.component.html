@@ -1,0 +1,17 @@
+<div class="container">
+  <form #myForm='ngForm'>
+    <div class="form-group col-md-6">
+      <div>
+        <input [(ngModel)]='contactModel.name' name='contactName' placeholder="name" class="form-control" required>
+      </div>
+      <div>
+        <input [(ngModel)]='contactModel.email' name='contactEmail' placeholder="email" class="form-control">
+      </div>
+      <div>
+        <input [(ngModel)]='contactModel.phone' name='contactPhone' placeholder="cellphone" class="form-control">
+      </div>
+      <button [disabled]='myForm.form.invalid' (click)='sendContact()'>Send</button>
+    </div>
+    {{this.contactModel | json }}
+  </form>
+</div>
