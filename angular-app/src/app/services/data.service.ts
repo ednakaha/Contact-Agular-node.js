@@ -14,6 +14,7 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
   postContact(cData: ContactModel):Observable<any> {
+    alert(environment.serverUrl +'-'+cData);
     return this.httpClient.post(environment.serverUrl+'contact',cData,httpOptions);
   }
 }
