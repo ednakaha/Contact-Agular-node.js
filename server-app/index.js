@@ -1,6 +1,8 @@
 // const app = require('express')();
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+
 const PORT = 8888;
 const app = express();
 app.use(cors());
@@ -21,6 +23,13 @@ var server = app.listen(PORT || 8080, function () {
 
 
 
+//todo config 
+var connConfig = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'angular_project'
+}
 
 app.post('/contact', function (req, res) {
     console.log(req.body);
@@ -32,33 +41,92 @@ app.post('/contact', function (req, res) {
         database: 'angular_project'
     });
 
+    // todo var connection = mysql.createConnection({ connConfig });
 
     connection.connect(function (err) {
         if (err) {
             console.log(err.code);
             console.log(err.fatal);
         } else {
-            //save in sql
-            connection.query('INSERT INTO contact (name,email,phone) VALUES (?)', req.body, function (error, results, fields) {
+            const q = "INSERT INTO `contact` set ?";
+            connection.query(q, req.body, function (error, results, fields) {
+                // write to file before throw error, if there is an error
+                connection.end;
+                const fileRowData = "name: " + req.body.name + ' email:' + req.body.email + ' phone:' + req.body.phone;
+                fs.writeFile("test.txt", fileRowData, function (err) {
+                    if (err) {
+                        res.status(500).json('error');
+                    }
 
-                if (error) throw error;
+                    res.json('Data saved successfully');
+                });
 
-            });
-            //write in file
-            /*const fs = require('fs');
-            fs.writeFile("/savedFiles/test.txt", "name: " + req.body.name + ' email:' + req.body.email + ' phone:' + req.body.phone, function (err) {
-                if (err) {
-                    return console.log(err);
+                if (error) {
+                    console.log(error.sql);
                 }
-
-                console.log("The file was saved!");
-
-                res.send('Data saved successfully');
-            });*/
-
+            });
         }
     });
+});
 
 
 
+app.post('/recipe', function (req, res) {
+    console.log(req.body);
+    var mysql = require('mysql');
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'angular_project'
+    });
+
+    // todo var connection = mysql.createConnection({ connConfig });
+
+    connection.connect(function (err) {
+        if (err) {
+            console.log(err.code);
+            console.log(err.fatal);
+        } else {
+            const q = "INSERT INTO `recipe` set ?";
+            connection.query(q, req.body, function (error, results, fields) {
+                connection.end; 
+                if (error) {
+                    console.log(error.sql);
+                } else {
+                    res.json('Recipe saved successfully');
+                }
+            });
+        }
+    });
+});
+
+app.get('/recipe', function (req, res) {
+    console.log(req.body);
+    var mysql = require('mysql');
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'angular_project'
+    });
+
+    // todo var connection = mysql.createConnection({ connConfig });
+
+    connection.connect(function (err) {
+        if (err) {
+            console.log(err.code);
+            console.log(err.fatal);
+        } else {
+            const q = "select * from `recipe`";
+            connection.query(q, null, function (error, results, fields) {
+                connection.end;
+                 if (error) {
+                    console.log(error.sql);
+                } else {
+                    res.json(results);
+                }
+            });
+        }
+    });
 });

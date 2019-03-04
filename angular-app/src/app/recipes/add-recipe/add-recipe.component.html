@@ -1,0 +1,14 @@
+<div class="container">
+  <form #myForm='ngForm'>
+    <div class="form-group col-md-6">
+      <div>
+        <input [(ngModel)]='recipeModel.name' name='recipeName' placeholder="name" class="form-control" required>
+      </div>
+      <div>
+        <input [(ngModel)]='recipeModel.instruct' name='recipeInstruct' placeholder="instruct" class="form-control">
+      </div>
+      <button [disabled]='myForm.form.invalid' (click)='sendRecipe()'>Send</button>
+    </div>
+    {{this.recipeModel | json }}
+  </form>
+</div>

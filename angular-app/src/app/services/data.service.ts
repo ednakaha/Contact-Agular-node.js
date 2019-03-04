@@ -17,6 +17,7 @@ export class DataService {
     return this.httpClient.post(environment.serverUrl+'contact',cData,httpOptions);
   }
 }
+//to do global
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',

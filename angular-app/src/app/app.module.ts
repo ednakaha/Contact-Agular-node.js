@@ -8,6 +8,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+import { ListRecipeComponent } from './recipes/list-recipe/list-recipe.component';
+import { ItemRecipeComponent } from './recipes/item-recipe/item-recipe.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    AddRecipeComponent,
+    ListRecipeComponent,
+    ItemRecipeComponent
   ],
   imports: [
     BrowserModule,
