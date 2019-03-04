@@ -22,7 +22,9 @@ export class ContactComponent implements OnInit {
   }
 
   sendContact() {
+    alert('sendContact')
     this.dataService.postContact(this.contactModel).subscribe(contactDataRes => {
+      alert('in');
       this.contactDataCom = contactDataRes;
       alert(contactDataRes);
     });

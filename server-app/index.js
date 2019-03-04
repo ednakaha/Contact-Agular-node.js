@@ -31,7 +31,7 @@ var connConfig = {
     database: 'angular_project'
 }
 
-app.post('/contact', function (req, res) {
+app.get('/contact', function (req, res) {
     console.log(req.body);
     var mysql = require('mysql');
     var connection = mysql.createConnection({
@@ -80,6 +80,7 @@ app.post('/recipe', function (req, res) {
         password: '',
         database: 'angular_project'
     });
+
 
     // todo var connection = mysql.createConnection({ connConfig });
 
