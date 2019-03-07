@@ -9,23 +9,16 @@ import { RecipeModel } from '../../models/recipe.model';
   styleUrls: ['./item-recipe.component.css']
 })
 export class ItemRecipeComponent implements OnInit {
-  @Input() oneReciept:RecipeModel;
+  @Input() oneReciept: RecipeModel;
 
-  constructor(private recipeServer:RecipeService) {
-   
+  constructor(private recipeServer: RecipeService) {
+
   }
 
   ngOnInit() {
-  /*  this.recipeServer.subscribe(res => {
-     // console.log(res);
-      const id = res.id;
-      if (id) {
-        this.recipeServer.get(id).subscribe(RecData => {
-          this.oneReciept = <RecipeModel>RecData;
-        })
-      }
-    });
-  */
-  }
 
+  }
+  deleteItem() {
+
+  }
 }
