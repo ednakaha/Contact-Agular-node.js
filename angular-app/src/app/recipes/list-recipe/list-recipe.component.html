@@ -1,6 +1,17 @@
 <div class="container">
   <div class="row">
-    <table class="table">
+    <ul *ngFor='let r of recipes'>
+      <app-item-recipe [oneReciept]=r></app-item-recipe>
+    </ul>
+  </div>
+  <div>
+    <button (click)='addRecipe()'>add</button>
+  </div>
+
+</div>
+
+<!--
+   <table class="table">
       <tr>
         <th>Id</th>
         <th>Name</th>
@@ -10,9 +21,7 @@
         <td>{{r.id}}</td>
         <td>{{r.name}}</td>
         <td>{{r.instruct}}</td>
+        <td> <button (click)='DelItem()'>Delete</button></td>
       </tr>
     </table>
-
-    <button (click)='addRecipe()'>add</button>
-  </div>
-</div>
+-->

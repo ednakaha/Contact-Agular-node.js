@@ -3,6 +3,7 @@ import { RecipeModel } from '../../models/recipe.model';
 import { RecipeService } from '../../services/recipe.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -22,10 +23,11 @@ export class AddRecipeComponent implements OnInit {
   }
 
   sendRecipe() {
-    this.recipeService.postRecipe(this.recipeModel).subscribe(RecipeDataRes => {
+    const subs= this.recipeService.postRecipe(this.recipeModel).subscribe(RecipeDataRes => {
       this.recipeDataCom = RecipeDataRes;
       alert(RecipeDataRes);
       this.router.navigate(['./recipes']);
+      subs.unsubscribe();
     });
 
   }
