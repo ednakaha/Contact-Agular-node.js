@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeModel } from '../../models/recipe.model';
-import { RecipeService } from '../../services/recipe.service';
+import { RecipeSocketIoService } from '../../services/recipe-socket-io.service';
 
 @Component({
   templateUrl: './list-recipe.component.html',
@@ -11,7 +11,7 @@ export class ListRecipeComponent implements OnInit {
 
   recipes: RecipeModel[];
 
-  constructor(private router: Router, private recipeService: RecipeService) {
+  constructor(private router: Router, private recipeService: RecipeSocketIoService) {
     this.recipes = <RecipeModel[]>{};
   }
 
